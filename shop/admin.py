@@ -1,6 +1,7 @@
 from django.contrib import admin
 
-from shop.models import Category
+from shop.forms import ProductAdminForm
+from shop.models import Category, Product
 
 
 # Register your models here.
@@ -9,3 +10,9 @@ from shop.models import Category
 @admin.register(Category)
 class Category(admin.ModelAdmin):
     readonly_fields = ("slug",)
+
+
+@admin.register(Product)
+class ProductAdmin(admin.ModelAdmin):
+    form = ProductAdminForm
+    readonly_fields = ("created_at", "updated_at", "slug")
