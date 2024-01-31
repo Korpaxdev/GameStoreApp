@@ -16,10 +16,10 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
 from app.handlers import render_not_found_template
 
 handler404 = render_not_found_template
 
-urlpatterns = [path("admin/", admin.site.urls)]
+urlpatterns = [path("admin/", admin.site.urls), path("", include("shop.urls"))]
