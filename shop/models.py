@@ -2,8 +2,22 @@ from django.db import models
 from transliterate import slugify
 
 
+class MainCategory(models.Model):
+    name = models.CharField(max_length=100, unique=True, verbose_name="Название")
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = "Основная категория"
+        verbose_name_plural = "Основные категории"
+
+
 class Category(models.Model):
     name = models.CharField(max_length=100, unique=True, verbose_name="Название")
+    main_category = models.ForeignKey(
+        MainCategory, on_delete=models.PROTECT, related_name="sub_categories", verbose_name="Основная категория"
+    )
     slug = models.SlugField(unique=True, blank=True, null=True, verbose_name="Slug")
 
     def save(self, *args, **kwargs):
