@@ -18,6 +18,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from users.views import base_view
+from app.handlers import render_not_found_template
 
-urlpatterns = [path("admin/", admin.site.urls), path("", base_view)]
+handler404 = render_not_found_template
+
+urlpatterns = [path("admin/", admin.site.urls)]
