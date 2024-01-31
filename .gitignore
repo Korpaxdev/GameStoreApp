@@ -3,6 +3,7 @@
 .vscode
 **/__pycache__
 database
+static
 .env
 *.db
 *.sqlite3
